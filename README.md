@@ -24,7 +24,17 @@ next step is to implement the stage2 boot loader.
  4. Configure your bootsrv (in the App.config file) so that it points to the correct COM port and files.
  5. Run bootsrv.exe.
  6. Power on the client system.
- 7. If the client is stuck on "hi!", try fiddling with some flow control settings.
+ 7. If the client is stuck on "hi!", try fiddling with some serial settings.
  
+__NOTE__: The boot sector configures the serial port to 9600 bauds, 8 data bits, 1 stop bit, and no flow control.
+ 
+## Error codes
 
+Note that when the client system shows you a panic message with an error code, that the CPU is halted. In other words,
+it is frozen. The only way forward is resetting the system.
+
+ * __01__ means an error in serial communication, such as a timeout
+ * __02__ means that an unexpected packet was received
+ * __FF__ means that the boot sector ended prematurely
+ 
  
