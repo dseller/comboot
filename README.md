@@ -1,6 +1,8 @@
 # comboot
 Boot loader that allows booting kernel using serial (COM) port
 
+[![COMBOOT Boot Loader](https://img.youtube.com/vi/uxUTAgARaJY/0.jpg)](https://www.youtube.com/watch?v=uxUTAgARaJY "COMBOOT Boot Loader")
+
 ## Progress
 
 The project is not finished yet. As of this writing, only the boot sector and a part of the bootsrv application are implemented. The 
@@ -27,7 +29,7 @@ next step is to implement the stage2 boot loader.
  7. If the client is stuck on "hi!", try fiddling with some serial settings.
  
 __NOTE__: The boot sector configures the serial port to 9600 bauds, 8 data bits, 1 stop bit, and no flow control.
- 
+
 ## Error codes
 
 Note that when the client system shows you a panic message with an error code, that the CPU is halted. In other words,
