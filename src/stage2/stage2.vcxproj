@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="io32.inc" />
+    <None Include="kernel_loader.asm" />
     <None Include="stage2.asm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

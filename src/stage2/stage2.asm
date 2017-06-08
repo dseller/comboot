@@ -2,29 +2,24 @@
 use16
 %define PORT 		0
 
-; Print a stage2 welcome message.
-call putnewline
-call putnewline
-mov esi, stage2_welcome
-call puts
+	; Print a stage2 welcome message.
+	call putnewline
+	call putnewline
+	mov esi, stage2_welcome
+	call puts
 
-; 1. enable A20 line
-call do_a20
+	; 1. enable A20 line
+	call do_a20
 
-; 2. load GDT
-call do_gdt
+	; 2. load GDT
+	call do_gdt
 
-; 3. enable PMode and jump to protected code
-cli
-mov eax, cr0
-or al, 1
-mov cr0, eax
-jmp 0x08:pmode
-
-; Don't CLI because we want interrupts to ctrl-alt-del.
-idle:
-	hlt
-	jmp idle
+	; 3. enable PMode and jump to protected code
+	cli
+	mov eax, cr0
+	or al, 1
+	mov cr0, eax
+	jmp 0x08:kloader
 
 do_gdt:
 	lgdt [gdtr]
@@ -55,10 +50,6 @@ Hex: db '0123456789ABCDEF'
 ; ---------- 32 bits code starts here -------------
 use32
 
-dd 0xCAFEBABE
-dd 0xCAFEBABE
-dd 0xCAFEBABE
-
 gdtr:
 	dw (gdt_end-gdt)+1
 	dd gdt
@@ -84,17 +75,4 @@ gdt:
 	db 0x00			; base hi 0x00
 gdt_end:
 
-pmode:
-	; setup data selectors and stack
-	mov eax, 0x10
-	mov ds, eax
-	mov es, eax
-	mov fs, eax
-	mov gs, eax
-	mov ss, eax
-	mov esp, 0x90000
-	
-	mov eax, 0xb8000
-	mov byte [eax], 'A'
-
-	hlt
+%include "kernel_loader.asm"

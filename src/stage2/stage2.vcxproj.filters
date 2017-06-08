@@ -14,5 +14,11 @@
     <None Include="stage2.asm">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="kernel_loader.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="io32.inc">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
