@@ -5,8 +5,8 @@
 %define MEM_START 	0x7E00	; Starting address of where to put the kernel.
 
 _entry:
-	xor ax, ax ; make it zero
-    mov ds, ax
+	xor ax, ax
+	mov ds, ax
 
 	mov al, NEWLINE
 	call putch
