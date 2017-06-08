@@ -13,7 +13,7 @@ It is sent to let the boot server know that a client is waiting for a kernel fil
 
  |0|0|0|1|.|.|.|.|			
 		  | | | `------ no high memory available
-          | | `-------- option #2
+          | | `-------- high speed (0 = 9600 baud, 1 = )
           |	`---------- option #3
           `------------ option #4
 

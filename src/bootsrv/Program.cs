@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.IO.Ports;
-using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace bootsrv
 {
@@ -71,8 +68,6 @@ namespace bootsrv
             port.Write(response, 0, 9);
 
             DumpHex(response, 9);
-
-            Console.WriteLine("Buf: {0} bytes", port.BytesToWrite);
         }
 
         private static void HandleFileRequest(SerialPort port, byte packet)
@@ -83,6 +78,12 @@ namespace bootsrv
 
             using (var stream = GetFileStream(fileId))
             {
+                if (stream == null)
+                {
+                    Console.WriteLine("File not found!");
+                    return;
+                }
+                
                 int size = (int)stream.Length;
 
                 // Write size of file
@@ -105,18 +106,16 @@ namespace bootsrv
                 port.Write(data, 0, data.Length);
                 DumpHex(data, size);
 
-                if (is16Bit)
-                    Console.WriteLine("Sent file {0}, 16-bit mode, {1:X4} bytes total.", fileId, data.Length);
-                else
-                {
-                    Console.WriteLine("Sent file {0}, 32-bit mode, {1:X4} bytes total.", fileId, data.Length);
-                }
+                Console.WriteLine("Sent file {0}, {2}-bit mode, {1:X4} bytes total.", fileId, data.Length, is16Bit ? "16" : "32");
             }
         }
 
         private static Stream GetFileStream(int id)
         {
             string path = ConfigurationManager.AppSettings[$"File{id}"];
+            if (!File.Exists(path))
+                return null;
+
             return File.Open(path, FileMode.Open);
         }
 
