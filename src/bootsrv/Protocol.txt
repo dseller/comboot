@@ -1,0 +1,26 @@
+﻿	BOOTSRV PROTOCOL
+
+Version 1.0		07-06-2017
+Dennis Seller
+--------------------------
+
+1. PACKETS
+
+1.1 CLIENT IDENTIFICATION PACKET
+
+This is the very first packet that is sent by the client upon booting.
+It is sent to let the boot server know that a client is waiting for a kernel file.
+
+ |0|0|0|1|.|.|.|.|			
+		  | | | `------ no high memory available
+          | | `-------- option #2
+          |	`---------- option #3
+          `------------ option #4
+
+1.2 SERVER IDENTIFICATION PACKET
+
+This packet is sent as a response to the Client Identification Packet (1.1).
+
+ |0|0|0|1|.|.|.|.|
+	          `--------- id string follows; server sends 8 bytes of ASCII.
+
