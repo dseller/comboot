@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bootsrv", "src\bootsrv\boot
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bootsect", "src\bootsect\bootsect.vcxproj", "{7AA2A7C7-2410-4382-9BAE-57B054717A3E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stage2", "src\stage2\stage2.vcxproj", "{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,15 +33,23 @@ Global
 		{F72BF1DD-66D1-40F5-8F6C-76169CF2426C}.Release|x86.Build.0 = Release|Any CPU
 		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Debug|Any CPU.Build.0 = Debug|Win32
-		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Debug|x64.ActiveCfg = Debug|x64
-		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Debug|x64.Build.0 = Debug|x64
+		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Debug|x64.ActiveCfg = Debug|Win32
 		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Debug|x86.ActiveCfg = Debug|Win32
 		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Debug|x86.Build.0 = Debug|Win32
 		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Release|Any CPU.ActiveCfg = Release|Win32
-		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Release|x64.ActiveCfg = Release|x64
-		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Release|x64.Build.0 = Release|x64
+		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Release|x64.ActiveCfg = Release|Win32
 		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Release|x86.ActiveCfg = Release|Win32
 		{7AA2A7C7-2410-4382-9BAE-57B054717A3E}.Release|x86.Build.0 = Release|Win32
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Debug|x64.ActiveCfg = Debug|x64
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Debug|x64.Build.0 = Debug|x64
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Debug|x86.ActiveCfg = Debug|Win32
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Debug|x86.Build.0 = Debug|Win32
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Release|Any CPU.ActiveCfg = Release|Win32
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Release|x64.ActiveCfg = Release|x64
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Release|x64.Build.0 = Release|x64
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Release|x86.ActiveCfg = Release|Win32
+		{C45284AD-6ABB-4DF5-BCAB-07B88CACA0B3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
