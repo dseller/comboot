@@ -77,15 +77,25 @@ shighspeed:
 	jz .lp
 
 	; Set baud rate divisor to 115200 baud (divisor 1)
-	mov al, 0x80
+	mov dx, COM_PORT+3
+	in al, dx
+	or al, 0x80
 	mov dx, COM_PORT+3
 	out dx, al
+
 	mov al, 0x01
 	mov dx, COM_PORT+0
 	out dx, al
 	mov al, 0x00
 	mov dx, COM_PORT+1
 	out dx, al
+
+	mov dx, COM_PORT+3
+	in al, dx
+	and al, 0b01111111
+	mov dx, COM_PORT+3
+	out dx, al
+
 	ret
 
 ; Switch the serial port to normal speed (9600 bauds).
@@ -179,7 +189,7 @@ sreadfile32:
 	pusha
 	call puthex32
 	popa
-	
+
 	inc ebx
 	dec ecx
 	jnz .lp

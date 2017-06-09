@@ -78,6 +78,21 @@ namespace bootsrv
 
             Console.WriteLine("Received {0}file request {1}", isHighSpeed ? "high-speed " : string.Empty, fileId);
 
+            if (isHighSpeed)
+            {
+                Console.Write("Giving client time to switch: ");
+                for (int i=0;i<2;i++)
+                {
+                    Thread.Sleep(1000);
+                    Console.Write(".");
+                }
+                Console.WriteLine();
+
+                port.Close();
+                port.BaudRate = 115200;
+                port.Open();
+            }
+
             using (var stream = GetFileStream(fileId))
             {
                 if (stream == null)
@@ -87,10 +102,6 @@ namespace bootsrv
                 }
                 
                 int size = (int)stream.Length;
-
-                if (isHighSpeed)
-                    port.BaudRate = 115200;
-                port.DiscardOutBuffer();
 
                 // Write size of file
                 if (is16Bit)
@@ -117,7 +128,11 @@ namespace bootsrv
                     Thread.Yield();
 
                 if (isHighSpeed)
+                {
+                    port.Close();
                     port.BaudRate = 9600;
+                    port.Open();
+                }
 
                 Console.WriteLine("Sent file {0}, {2}-bit mode, {1:X4} bytes total.", fileId, data.Length, is16Bit ? "16" : "32");
             }

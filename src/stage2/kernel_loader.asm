@@ -19,11 +19,11 @@ kloader:
 	call puts32
 
 	; Request kernel image (file 1)
-	mov al, 0b00110001	; request file 1, 32-bits mode
+	mov al, 0b00111001	; request file 1, 32-bits mode
 	call swrite32
 
 	; Switch to high speed mode
-	; call shighspeed
+	call shighspeed
 
 	; Test: read 32-bits size field
 	call sread3232
