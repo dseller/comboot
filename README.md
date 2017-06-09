@@ -3,10 +3,13 @@ Boot loader that allows booting kernel using serial (COM) port
 
 [![COMBOOT Boot Loader](https://img.youtube.com/vi/uxUTAgARaJY/0.jpg)](https://www.youtube.com/watch?v=uxUTAgARaJY "COMBOOT Boot Loader")
 
-## Progress
+## Limitations
 
-The project is not finished yet. As of this writing, only the boot sector and a part of the bootsrv application are implemented. The 
-next step is to implement the stage2 boot loader.
+ * Kernel image multiboot header is not parsed.
+ * Multiboot info structure is stubbed right now.
+ * Memory detection & memory map are not yet implemented.
+ * Stage2 kernel loader jumps to hardcoded 0x100420, which fits my own kernel perfectly.
+ * "High-speed" transfer is not yet implemented, it's stuck at 9600 bauds at the moment.
 
 ## Requirements
 
