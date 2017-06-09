@@ -22,17 +22,25 @@ kloader:
 	mov al, 0b00110001	; request file 1, 32-bits mode
 	call swrite32
 
+	; Switch to high speed mode
+	; call shighspeed
+
 	; Test: read 32-bits size field
-	call sread32
-	call puthex32
-	call sread32
-	call puthex32
-	call sread32
-	call puthex32
-	call sread32
+	call sread3232
+	mov edx, eax
+
+	; Load to 1MB mark.
+	mov ebx, 0x100000
+	call sreadfile32
+
+	mov esi, done
+	call puts32
+
+	mov al, byte [0x100000]
 	call puthex32
 
 	hlt
 
 welcome_pmode: db 'PMODE OK. ', 0
 serial_inited: db 'COM1 OK. ', 0
+done: db 'KERNEL OK. ', 0

@@ -73,8 +73,10 @@ namespace bootsrv
         private static void HandleFileRequest(SerialPort port, byte packet)
         {
             bool is16Bit = ((packet >> 4) & 0x0F) == 0x02;
-            int fileId = packet & 0x0F;
-            Console.WriteLine("Received file request {0}", fileId);
+            bool isHighSpeed = ((packet >> 3) & 0x01) == 0x01;
+            int fileId = packet & 0b111;
+
+            Console.WriteLine("Received {0}file request {1}", isHighSpeed ? "high-speed " : string.Empty, fileId);
 
             using (var stream = GetFileStream(fileId))
             {
@@ -85,6 +87,10 @@ namespace bootsrv
                 }
                 
                 int size = (int)stream.Length;
+
+                if (isHighSpeed)
+                    port.BaudRate = 115200;
+                port.DiscardOutBuffer();
 
                 // Write size of file
                 if (is16Bit)
@@ -105,6 +111,13 @@ namespace bootsrv
                 stream.Read(data, 0, size);
                 port.Write(data, 0, data.Length);
                 DumpHex(data, size);
+
+                // Wait until the output buffer is empty.
+                while (port.BytesToWrite != 0)
+                    Thread.Yield();
+
+                if (isHighSpeed)
+                    port.BaudRate = 9600;
 
                 Console.WriteLine("Sent file {0}, {2}-bit mode, {1:X4} bytes total.", fileId, data.Length, is16Bit ? "16" : "32");
             }
