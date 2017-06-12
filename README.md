@@ -9,7 +9,6 @@ Boot loader that allows booting kernel using serial (COM) port
  * Multiboot info structure is stubbed right now.
  * Memory detection & memory map are not yet implemented.
  * Stage2 kernel loader jumps to hardcoded 0x100420, which fits my own kernel perfectly.
- * "High-speed" transfer is not yet implemented, it's stuck at 9600 bauds at the moment.
 
 ## Requirements
 
